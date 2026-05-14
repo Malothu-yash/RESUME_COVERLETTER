@@ -1,0 +1,309 @@
+/* ── Reset & Base ──────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --accent:   #2563eb;
+  --accent-h: #1d4ed8;
+  --bg:       #f1f5f9;
+  --surface:  #ffffff;
+  --border:   #e2e8f0;
+  --text:     #1e293b;
+  --muted:    #64748b;
+  --danger:   #ef4444;
+  --radius:   8px;
+  --shadow:   0 2px 8px rgba(0,0,0,.08);
+}
+
+html { font-size: 16px; }
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* ── Header ──────────────────────────────────────────────────── */
+.site-header {
+  background: var(--accent);
+  color: #fff;
+  padding: 1.5rem 2rem 0;
+  text-align: center;
+}
+
+.site-header h1 { font-size: 1.8rem; font-weight: 700; }
+.site-header .tagline { opacity: .85; margin-top: .25rem; font-size: .95rem; }
+
+/* Tabs */
+.tab-nav { display: flex; justify-content: center; gap: .5rem; margin-top: 1.25rem; }
+
+.tab-btn {
+  padding: .55rem 1.4rem;
+  border: none; cursor: pointer;
+  border-radius: var(--radius) var(--radius) 0 0;
+  font-size: .95rem; font-weight: 600;
+  background: rgba(255,255,255,.2);
+  color: #fff;
+  transition: background .2s;
+}
+.tab-btn:hover  { background: rgba(255,255,255,.35); }
+.tab-btn.active { background: var(--surface); color: var(--accent); }
+
+/* ── Layout ──────────────────────────────────────────────────── */
+.builder-layout { max-width: 1280px; margin: 0 auto; padding: 1.5rem 1rem 4rem; }
+
+.tab-content { display: none; gap: 1.5rem; }
+.tab-content.active {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+@media (max-width: 900px) {
+  .tab-content.active { grid-template-columns: 1fr; }
+}
+
+/* ── Form Panel ─────────────────────────────────────────────── */
+.form-panel {
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.form-panel h2 { font-size: 1.15rem; font-weight: 700; color: var(--accent); }
+
+fieldset {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1rem .75rem;
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+}
+
+legend {
+  font-weight: 600;
+  font-size: .85rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--muted);
+  padding: 0 .4rem;
+}
+
+.form-row { display: flex; flex-direction: column; gap: .3rem; }
+.form-row.two-col { flex-direction: row; gap: .75rem; }
+.form-row.two-col > div { flex: 1; display: flex; flex-direction: column; gap: .3rem; }
+
+label { font-size: .85rem; font-weight: 600; color: var(--muted); }
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+textarea {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: .5rem .75rem;
+  font-size: .9rem;
+  width: 100%;
+  color: var(--text);
+  background: #fff;
+  transition: border-color .2s, box-shadow .2s;
+}
+input:focus, textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(37,99,235,.15);
+}
+textarea { resize: vertical; }
+
+/* Dynamic entry blocks */
+.entry-block {
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  padding: .75rem;
+  display: flex;
+  flex-direction: column;
+  gap: .65rem;
+  margin-bottom: .75rem;
+  background: #fafafa;
+}
+
+.add-btn {
+  background: none;
+  border: 1px dashed var(--accent);
+  color: var(--accent);
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-size: .85rem;
+  font-weight: 600;
+  align-self: flex-start;
+  transition: background .2s;
+}
+.add-btn:hover { background: rgba(37,99,235,.07); }
+
+.remove-btn {
+  background: none;
+  border: none;
+  color: var(--danger);
+  font-size: .8rem;
+  cursor: pointer;
+  align-self: flex-end;
+  padding: .2rem .4rem;
+  border-radius: 4px;
+}
+.remove-btn:hover { background: #fee2e2; }
+
+/* Action bar */
+.action-bar { margin-top: auto; padding-top: .5rem; }
+
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: .65rem 1.4rem;
+  border-radius: var(--radius);
+  font-size: .95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .2s, transform .1s;
+}
+.btn-primary:hover  { background: var(--accent-h); }
+.btn-primary:active { transform: scale(.97); }
+
+/* ── Preview Panel ───────────────────────────────────────────── */
+.preview-panel {
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+}
+
+.preview-panel h2 { font-size: 1.15rem; font-weight: 700; color: var(--accent); }
+
+.preview-wrapper {
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: auto;
+  flex: 1;
+}
+
+/* ── Resume Document ─────────────────────────────────────────── */
+.resume-doc {
+  font-family: Georgia, 'Times New Roman', serif;
+  color: #111;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 2.5rem 2.5rem 3rem;
+  line-height: 1.55;
+  font-size: .9rem;
+}
+
+.rdoc-header {
+  border-bottom: 3px solid var(--accent);
+  padding-bottom: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.rdoc-header h1 { font-size: 1.75rem; color: var(--text); }
+.rdoc-title { font-size: 1rem; color: var(--muted); margin-top: .2rem; }
+.rdoc-contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem 1rem;
+  margin-top: .5rem;
+  font-size: .82rem;
+  color: var(--muted);
+}
+.rdoc-contact span::before { content: '• '; }
+.rdoc-contact span:first-child::before { content: ''; }
+
+.rdoc-section { margin-bottom: 1.25rem; }
+
+.rdoc-sec-title {
+  font-size: .95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--accent);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: .3rem;
+  margin-bottom: .75rem;
+}
+
+.rdoc-exp-item,
+.rdoc-edu-item {
+  margin-bottom: .9rem;
+}
+
+.rdoc-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+.rdoc-item-title { font-weight: 700; font-size: .9rem; }
+.rdoc-item-date  { font-size: .8rem; color: var(--muted); white-space: nowrap; }
+.rdoc-item-sub   { font-style: italic; color: var(--muted); font-size: .85rem; margin-top: .1rem; }
+.rdoc-item-desc  { margin-top: .35rem; white-space: pre-line; font-size: .85rem; }
+
+.rdoc-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem .6rem;
+}
+.rdoc-skill-tag {
+  background: #eff6ff;
+  color: var(--accent);
+  border: 1px solid #bfdbfe;
+  border-radius: 999px;
+  padding: .18rem .75rem;
+  font-size: .8rem;
+  font-weight: 600;
+}
+
+/* ── Cover Letter Document ───────────────────────────────────── */
+.cldoc {
+  font-family: Georgia, 'Times New Roman', serif;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 2.5rem 2.5rem 3rem;
+  font-size: .9rem;
+  line-height: 1.7;
+  color: #111;
+}
+
+.cldoc-sender { margin-bottom: 1.5rem; }
+.cldoc-sender-name { font-weight: 700; font-size: 1.1rem; color: var(--text); }
+.cldoc-sender-contact { font-size: .82rem; color: var(--muted); }
+.cldoc-date { font-size: .85rem; color: var(--muted); margin-top: .4rem; }
+
+.cldoc-recipient { margin-bottom: 1.5rem; font-size: .9rem; line-height: 1.55; }
+
+.cldoc-salutation { margin-bottom: 1rem; font-weight: 600; }
+
+.cldoc-body p { margin-bottom: .85rem; white-space: pre-line; }
+
+.cldoc-sign { margin-top: 1.5rem; }
+.cldoc-sign-name { font-weight: 700; margin-top: .3rem; }
+
+/* ── Print Styles ────────────────────────────────────────────── */
+@media print {
+  body { background: #fff; }
+
+  .site-header,
+  .tab-nav,
+  .form-panel,
+  .preview-panel h2,
+  .action-bar { display: none !important; }
+
+  .builder-layout { padding: 0; max-width: none; }
+  .tab-content.active { grid-template-columns: 1fr; }
+  .preview-panel { display: block; }
+  .preview-wrapper { box-shadow: none; }
+  .resume-doc,
+  .cldoc { max-width: none; padding: 1cm; }
+}

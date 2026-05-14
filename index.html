@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resume &amp; Cover Letter Builder</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <h1>Resume &amp; Cover Letter Builder</h1>
+    <p class="tagline">Create professional documents in minutes</p>
+    <nav class="tab-nav">
+      <button class="tab-btn active" data-tab="resume">📄 Resume</button>
+      <button class="tab-btn" data-tab="coverletter">✉️ Cover Letter</button>
+    </nav>
+  </header>
+
+  <main class="builder-layout">
+
+    <!-- ===== RESUME TAB ===== -->
+    <section id="resume-tab" class="tab-content active">
+      <div class="form-panel">
+        <h2>Resume Details</h2>
+
+        <fieldset>
+          <legend>Personal Information</legend>
+          <div class="form-row">
+            <label for="r-name">Full Name *</label>
+            <input type="text" id="r-name" placeholder="Jane Doe" />
+          </div>
+          <div class="form-row">
+            <label for="r-title">Job Title / Tagline</label>
+            <input type="text" id="r-title" placeholder="Senior Software Engineer" />
+          </div>
+          <div class="form-row two-col">
+            <div>
+              <label for="r-email">Email</label>
+              <input type="email" id="r-email" placeholder="jane@example.com" />
+            </div>
+            <div>
+              <label for="r-phone">Phone</label>
+              <input type="tel" id="r-phone" placeholder="+1 555 000 0000" />
+            </div>
+          </div>
+          <div class="form-row two-col">
+            <div>
+              <label for="r-location">Location</label>
+              <input type="text" id="r-location" placeholder="New York, NY" />
+            </div>
+            <div>
+              <label for="r-linkedin">LinkedIn / Portfolio URL</label>
+              <input type="text" id="r-linkedin" placeholder="linkedin.com/in/janedoe" />
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Professional Summary</legend>
+          <div class="form-row">
+            <label for="r-summary">Summary</label>
+            <textarea id="r-summary" rows="4" placeholder="A brief overview of your experience and goals…"></textarea>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Work Experience</legend>
+          <div id="experience-list"></div>
+          <button type="button" class="add-btn" id="add-experience">+ Add Experience</button>
+        </fieldset>
+
+        <fieldset>
+          <legend>Education</legend>
+          <div id="education-list"></div>
+          <button type="button" class="add-btn" id="add-education">+ Add Education</button>
+        </fieldset>
+
+        <fieldset>
+          <legend>Skills</legend>
+          <div class="form-row">
+            <label for="r-skills">Skills (comma-separated)</label>
+            <input type="text" id="r-skills" placeholder="JavaScript, React, Node.js, SQL…" />
+          </div>
+        </fieldset>
+
+        <div class="action-bar">
+          <button class="btn-primary" id="print-resume">🖨️ Print / Save as PDF</button>
+        </div>
+      </div>
+
+      <!-- RESUME PREVIEW -->
+      <div class="preview-panel">
+        <h2>Preview</h2>
+        <div class="preview-wrapper" id="resume-preview">
+          <div class="resume-doc">
+            <header class="rdoc-header">
+              <h1 id="pv-r-name">Jane Doe</h1>
+              <p id="pv-r-title" class="rdoc-title"></p>
+              <div id="pv-r-contact" class="rdoc-contact"></div>
+            </header>
+
+            <section id="pv-r-summary-sec" class="rdoc-section" style="display:none">
+              <h2 class="rdoc-sec-title">Summary</h2>
+              <p id="pv-r-summary"></p>
+            </section>
+
+            <section id="pv-r-exp-sec" class="rdoc-section" style="display:none">
+              <h2 class="rdoc-sec-title">Experience</h2>
+              <div id="pv-r-experience"></div>
+            </section>
+
+            <section id="pv-r-edu-sec" class="rdoc-section" style="display:none">
+              <h2 class="rdoc-sec-title">Education</h2>
+              <div id="pv-r-education"></div>
+            </section>
+
+            <section id="pv-r-skills-sec" class="rdoc-section" style="display:none">
+              <h2 class="rdoc-sec-title">Skills</h2>
+              <div id="pv-r-skills" class="rdoc-skills"></div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== COVER LETTER TAB ===== -->
+    <section id="coverletter-tab" class="tab-content">
+      <div class="form-panel">
+        <h2>Cover Letter Details</h2>
+
+        <fieldset>
+          <legend>Your Information</legend>
+          <div class="form-row">
+            <label for="cl-name">Full Name *</label>
+            <input type="text" id="cl-name" placeholder="Jane Doe" />
+          </div>
+          <div class="form-row two-col">
+            <div>
+              <label for="cl-email">Email</label>
+              <input type="email" id="cl-email" placeholder="jane@example.com" />
+            </div>
+            <div>
+              <label for="cl-phone">Phone</label>
+              <input type="tel" id="cl-phone" placeholder="+1 555 000 0000" />
+            </div>
+          </div>
+          <div class="form-row">
+            <label for="cl-location">Location</label>
+            <input type="text" id="cl-location" placeholder="New York, NY" />
+          </div>
+          <div class="form-row">
+            <label for="cl-date">Date</label>
+            <input type="date" id="cl-date" />
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Recipient Information</legend>
+          <div class="form-row">
+            <label for="cl-hiring-manager">Hiring Manager Name</label>
+            <input type="text" id="cl-hiring-manager" placeholder="Mr. John Smith" />
+          </div>
+          <div class="form-row">
+            <label for="cl-company">Company Name *</label>
+            <input type="text" id="cl-company" placeholder="Acme Corp" />
+          </div>
+          <div class="form-row">
+            <label for="cl-company-address">Company Address</label>
+            <input type="text" id="cl-company-address" placeholder="123 Main St, San Francisco, CA" />
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Letter Content</legend>
+          <div class="form-row">
+            <label for="cl-position">Position Applying For *</label>
+            <input type="text" id="cl-position" placeholder="Frontend Developer" />
+          </div>
+          <div class="form-row">
+            <label for="cl-opening">Opening Paragraph</label>
+            <textarea id="cl-opening" rows="4" placeholder="I am writing to express my interest in the [Position] role at [Company]…"></textarea>
+          </div>
+          <div class="form-row">
+            <label for="cl-body">Body (Highlight your skills and experience)</label>
+            <textarea id="cl-body" rows="6" placeholder="In my previous role at…"></textarea>
+          </div>
+          <div class="form-row">
+            <label for="cl-closing">Closing Paragraph</label>
+            <textarea id="cl-closing" rows="3" placeholder="I would welcome the opportunity to discuss…"></textarea>
+          </div>
+        </fieldset>
+
+        <div class="action-bar">
+          <button class="btn-primary" id="print-coverletter">🖨️ Print / Save as PDF</button>
+        </div>
+      </div>
+
+      <!-- COVER LETTER PREVIEW -->
+      <div class="preview-panel">
+        <h2>Preview</h2>
+        <div class="preview-wrapper" id="coverletter-preview">
+          <div class="cldoc">
+            <div class="cldoc-sender">
+              <p id="pv-cl-name" class="cldoc-sender-name">Jane Doe</p>
+              <p id="pv-cl-contact" class="cldoc-sender-contact"></p>
+              <p id="pv-cl-date" class="cldoc-date"></p>
+            </div>
+
+            <div id="pv-cl-recipient" class="cldoc-recipient"></div>
+
+            <p id="pv-cl-salutation" class="cldoc-salutation">Dear Hiring Manager,</p>
+
+            <div id="pv-cl-body" class="cldoc-body">
+              <p id="pv-cl-opening"></p>
+              <p id="pv-cl-bodytext"></p>
+              <p id="pv-cl-closing"></p>
+            </div>
+
+            <div class="cldoc-sign">
+              <p>Sincerely,</p>
+              <p id="pv-cl-sign-name" class="cldoc-sign-name">Jane Doe</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Templates for dynamic entries -->
+  <template id="tmpl-experience">
+    <div class="entry-block" data-type="experience">
+      <div class="form-row two-col">
+        <div>
+          <label>Job Title</label>
+          <input type="text" class="exp-jobtitle" placeholder="Software Engineer" />
+        </div>
+        <div>
+          <label>Company</label>
+          <input type="text" class="exp-company" placeholder="Acme Corp" />
+        </div>
+      </div>
+      <div class="form-row two-col">
+        <div>
+          <label>Start Date</label>
+          <input type="text" class="exp-start" placeholder="Jan 2020" />
+        </div>
+        <div>
+          <label>End Date</label>
+          <input type="text" class="exp-end" placeholder="Present" />
+        </div>
+      </div>
+      <div class="form-row">
+        <label>Description / Achievements</label>
+        <textarea class="exp-desc" rows="3" placeholder="• Led a team of 5 engineers…&#10;• Reduced latency by 40%…"></textarea>
+      </div>
+      <button type="button" class="remove-btn">✕ Remove</button>
+    </div>
+  </template>
+
+  <template id="tmpl-education">
+    <div class="entry-block" data-type="education">
+      <div class="form-row two-col">
+        <div>
+          <label>Degree / Qualification</label>
+          <input type="text" class="edu-degree" placeholder="B.Sc. Computer Science" />
+        </div>
+        <div>
+          <label>Institution</label>
+          <input type="text" class="edu-institution" placeholder="MIT" />
+        </div>
+      </div>
+      <div class="form-row two-col">
+        <div>
+          <label>Start Year</label>
+          <input type="text" class="edu-start" placeholder="2016" />
+        </div>
+        <div>
+          <label>End Year</label>
+          <input type="text" class="edu-end" placeholder="2020" />
+        </div>
+      </div>
+      <button type="button" class="remove-btn">✕ Remove</button>
+    </div>
+  </template>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
